@@ -6,7 +6,8 @@ export const handlelogin = defineStore('profile', {
   state: () => ({
     email: '',
     password: '',
-    lastLog: null  
+    lastLog: null,  
+    safeEmail:''
   }),
   actions: {
     async loginCredentials(Email, Password) {
@@ -16,10 +17,8 @@ export const handlelogin = defineStore('profile', {
       console.log('Login credentials saved:', this.email, this.password)
 
       const db = getDatabase()
-      const safeEmail = this.email.replace(/\./g, ',').replace(/@/g, '_')
-      const userRef = ref(db, `users/${safeEmail}`)
-
-      const medicineStore = useMedicineStore()
+      this.safeEmail = this.email.replace(/\./g, ',').replace(/@/g, '_')
+      const userRef = ref(db, `users/${this.safeEmail}`)
 
       try {
         const snapshot = await get(userRef)
@@ -32,13 +31,12 @@ export const handlelogin = defineStore('profile', {
           return false
         } else {
           console.log('User logged in successfully:', this.email)
-
+          console.log('User data:', this.safeEmail)
           const now = new Date().toISOString()
           await update(userRef, { lastLog: now })
 
           this.lastLog = now
           console.log('Updated lastLog:', now)
-          medicineStore.safeEmail = safeEmail
           return true
         }
       } catch (err) {
