@@ -1,43 +1,27 @@
 {
-<<<<<<< HEAD
-  "name": "pharmassist-demo",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-=======
   "name": "pharmassist",
-  "version": "0.0.0",
   "private": true,
+  "version": "0.0.0",
   "type": "module",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
->>>>>>> b0b6f42ee5a3add627a8d8e62e0b0827d0835388
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "bootstrap": "^5.3.8",
     "firebase": "^12.7.0",
     "pinia": "^3.0.4",
-    "vue": "^3.5.24",
+    "vue": "^3.5.26",
     "vue-router": "^4.6.4",
     "vuex": "^4.1.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.1",
-    "vite": "^7.2.4"
-=======
-    "vue": "^3.5.26",
-    "vue-router": "^4.6.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.3",
     "vite": "^7.3.0",
     "vite-plugin-vue-devtools": "^8.0.5"
->>>>>>> b0b6f42ee5a3add627a8d8e62e0b0827d0835388
   }
 }
