@@ -1,103 +1,20 @@
-<template>
-  <div class="container">
-    <h2>Medicine Scheduler</h2>
-
-    <div class="scheduler">
-      <!-- LEFT: Form -->
-      <div class="form-card">
-        <h3>Add Medicine</h3>
-
-        <form @submit.prevent="save">
-          <!-- Intake -->
-          <select v-model="intakeType" required>
-            <option disabled value="">Select Intake</option>
-            <option value="daily">Daily</option>
-            <option value="weekly">Weekly</option>
-          </select>
-
-          <!-- Box -->
-          <select v-model="box" required>
-            <option disabled value="">Select Box</option>
-            <option value="box1">Box 1</option>
-            <option value="box2">Box 2</option>
-            <option value="box3">Box 3</option>
-            <option value="box4">Box 4</option>
-          </select>
-
-          <input
-            type="text"
-            v-model="medicine"
-            placeholder="Medicine name"
-            required
-          />
-
-          <input type="time" v-model="time" required />
-
-          <input
-            type="number"
-            v-model="dose"
-            placeholder="Dose"
-            min="1"
-            required
-          />
-
-          <!-- Last taken -->
-          <input type="date" v-model="lastTaken" required />
-
-          <button type="submit">Save</button>
-        </form>
-      </div>
-
-      <!-- RIGHT: Display -->
-      <div class="display-card">
-        <h3>Scheduled Medicines</h3>
-
-        <h4>Daily</h4>
-        <div class="med-list">
-          <div
-            v-for="(data, key) in store.medicines.daily"
-            :key="key"
-            class="med-item"
-          >
-            <strong class="med-box">{{ key.toUpperCase() }}</strong>
-            <p><span class="med-label">Medicine:</span> {{ data.medicine }}</p>
-            <p><span class="med-label">Time:</span> {{ data.time }}</p>
-            <p><span class="med-label">Dose left:</span> {{ data.dose }}</p>
-            <p><span class="med-label">Last taken:</span> {{ data.lastTaken }}</p>
-          </div>
-        </div>
-
-        <h4>Weekly</h4>
-        <div class="med-list">
-          <div
-            v-for="(data, key) in store.medicines.weekly"
-            :key="key"
-            class="med-item"
-          >
-            <strong class="med-box">{{ key.toUpperCase() }}</strong>
-            <p><span class="med-label">Medicine:</span> {{ data.medicine }}</p>
-            <p><span class="med-label">Time:</span> {{ data.time }}</p>
-            <p><span class="med-label">Dose left:</span> {{ data.dose }}</p>
-            <p><span class="med-label">Last taken:</span> {{ data.lastTaken }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
-import { ref, onMounted } from "vue"
-import { useMedicineStore } from "../JS/handlemedicine"
+import { ref, onMounted } from "vue";
+import { useMedicineStore } from "../JS/handlemedicine";
 
-const store = useMedicineStore()
+const store = useMedicineStore();
 
-const intakeType = ref("")
-const box = ref("")
-const medicine = ref("")
-const time = ref("")
-const dose = ref("")
-const lastTaken = ref("")
+const intakeType = ref("");
+const box = ref("");
+const medicine = ref("");
+const time = ref("");
+const dose = ref("");
+const lastTaken = ref("");
+
+const isDropdownOpen = ref(false);
+const toggleDropdown = () => {
+  isDropdownOpen.value = !isDropdownOpen.value;
+};
 
 const save = async () => {
   await store.saveMedicine(
@@ -107,152 +24,150 @@ const save = async () => {
     time.value,
     dose.value,
     lastTaken.value
-  )
+  );
 
-  intakeType.value = ""
-  box.value = ""
-  medicine.value = ""
-  time.value = ""
-  dose.value = ""
-  lastTaken.value = ""
-}
+  intakeType.value = "";
+  box.value = "";
+  medicine.value = "";
+  time.value = "";
+  dose.value = "";
+  lastTaken.value = "";
+};
 
 onMounted(() => {
-  store.listenMedicines()
-})
+  store.listenMedicines();
+});
 </script>
 
+<template>
+  <div class="header">
+    <div class="left-header">
+      <div class="logo-container">
+        <img src="../assets/logo.svg" alt="Logo" />
+      </div>
+      <span class="logo-name">PharmAssist</span>
+    </div>
+
+    <nav class="avatar-dropdown">
+      <ul>
+        <li class="dropdown">
+          <button class="dropbtn" @click="toggleDropdown">LB</button>
+          <ul :class="{ 'dropdown-content': true, show: isDropdownOpen }">
+            <li><router-link to="/Edit profile">Edit profile</router-link></li>
+            <li>
+              <router-link to="/Edit medication">Edit medication</router-link>
+            </li>
+            <li><router-link to="/login">Logout</router-link></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="overview-container">
+    <div class="overview-content">
+      <div class="overview-icon">
+        <img src="../assets/cloud-icon.svg" alt="Overview Logo" />
+      </div>
+      <span class="overview-heading">Weekly Overview</span>
+    </div>
+    <span class="overview-greetings">
+      Good Afternoon, <span class="firstname">Lamuel!</span>
+    </span>
+  </div>
+</template>
+
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-.container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 30px;
+/* navbar */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.left-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo-name {
+  font-size: 2rem;
+  font-weight: 600;
   color: #333;
 }
 
-.scheduler {
+.logo-container {
+  background-color: #fff;
+  height: 60px;
+  width: 60px;
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0px 1px 6px rgb(219, 219, 219);
 }
 
-/* FORM CARD */
-.form-card {
-  flex: 1;
-  min-width: 280px;
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+.logo-container img {
+  height: 40px;
+  width: 40px;
 }
 
-.form-card h3 {
-  margin-bottom: 20px;
-  color: #444;
-  font-weight: 600;
+.dropdown {
+  position: relative;
+  display: inline-block;
+  gap: 10px;
 }
 
-.form-card input,
-.form-card select {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  transition: border 0.2s;
-  font-family: 'Poppins', sans-serif;
-}
-
-.form-card input:focus,
-.form-card select:focus {
-  border-color: #5b8df9;
-  outline: none;
-}
-
-.form-card button {
-  width: 100%;
-  padding: 12px;
-  background: #5b8df9;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
+.dropbtn {
+  background: #f3e9ff;
+  color: #1e40af;
   cursor: pointer;
-  transition: background 0.2s;
-  font-family: 'Poppins', sans-serif;
+  height: 3.8rem;
+  width: 3.8rem;
+  border: none;
+  border-radius: 50%;
+  font-size: x-large;
+  font-weight: 500;
+  box-shadow: 0px 1px 6px rgb(219, 219, 219);
 }
 
-.form-card button:hover {
-  background: #3f6ae0;
-}
-
-/* DISPLAY CARD */
-.display-card {
-  flex: 1;
-  min-width: 280px;
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  max-height: 500px;
-  overflow-y: auto;
-}
-
-.display-card h3 {
-  margin-bottom: 20px;
-  color: #444;
-  font-weight: 600;
-}
-
-.med-list {
-  display: flex;
+.dropdown-content {
+  display: none;
   flex-direction: column;
-  gap: 15px;
+  position: absolute;
+  right: 0;
+  top: 4.4rem;
+  background: white;
+  min-width: 160px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  font-size: large;
+  text-align: right;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-.med-item {
-  padding: 15px;
-  border-radius: 10px;
-  background: #f7f9fc;
-  border-left: 5px solid #5b8df9;
-  transition: transform 0.2s;
+.dropdown-content.show {
+  display: flex;
 }
 
-.med-item:hover {
-  transform: translateX(5px);
+.dropdown-content li {
+  list-style: none;
 }
 
-.med-item p {
-  margin: 4px 0;
-  font-size: 14px;
-  color: #555;
-}
-
-.med-item span {
-  font-weight: 600;
-  color: #333;
-}
-
-.med-box {
-  font-family: 'Courier New', Courier, monospace; /* distinct, techy look */
-  color: #5b8df9;
-  font-size: 16px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 700px) {
-  .scheduler {
-    flex-direction: column;
-  }
+.dropdown-content li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #1e40af;
 }
 </style>

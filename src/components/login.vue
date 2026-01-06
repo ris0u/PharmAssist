@@ -24,7 +24,7 @@
         </form>
   
         <p class="switch">
-          Wala pang account?
+          Need an account?
           <router-link to="/register">Register</router-link>
         </p>
       </div>
