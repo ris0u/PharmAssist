@@ -72,8 +72,19 @@ onMounted(() => {
       <span class="overview-heading">Weekly Overview</span>
     </div>
     <span class="overview-greetings">
-      Good Afternoon, <span class="firstname">Lamuel!</span>
+      Good afternoon, <span class="firstname">Lamuel!</span>
     </span>
+    <span class="greetings-extension">Hope your day is going wonderfully.</span>
+  </div>
+
+  <div class="schedule-container">
+    <div class="schedule-heading">
+      <span class="schedule-title">Your Weekly's Schedule</span>
+      <span class="medication-progress"> 2 remaining </span>
+    </div>
+    <div class="daily-schedule">
+      
+    </div>
   </div>
 </template>
 
@@ -85,7 +96,7 @@ onMounted(() => {
   font-family: "Inter", sans-serif;
 }
 
-/* navbar */
+/* Header */
 .header {
   display: flex;
   justify-content: space-between;
@@ -100,15 +111,15 @@ onMounted(() => {
   gap: 8px;
 }
 .logo-name {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: #333;
+  color: #44403C;
 }
 
 .logo-container {
   background-color: #fff;
-  height: 60px;
-  width: 60px;
+  height: 56px;
+  width: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,10 +128,11 @@ onMounted(() => {
 }
 
 .logo-container img {
-  height: 40px;
-  width: 40px;
+  height: 32px;
+  width: 32px;
 }
 
+/* Avatar Dropdown */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -170,4 +182,44 @@ onMounted(() => {
   text-decoration: none;
   color: #1e40af;
 }
+
+/* overview */
+.overview-container {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 1rem;
+}
+.overview-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.overview-heading {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #F59E0B;
+}
+.overview-icon img {
+  height: 40px;
+  width: 40px;
+}
+.overview-greetings {
+  display: block;
+  margin-top: 1rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #44403C;
+}
+.firstname {
+  font-weight: 700;
+  color: #1E40AF;
+}
+.greetings-extension {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #78716C;
+}
+
 </style>
