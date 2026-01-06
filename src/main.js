@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import App from "./App.vue";
@@ -29,3 +30,11 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)       // <- must be before mount
 app.mount("#app")
+=======
+import { createApp } from 'vue'
+import App from './App.vue'
+
+const app = createApp(App);
+
+app.mount('#app');
+>>>>>>> b0b6f42ee5a3add627a8d8e62e0b0827d0835388
