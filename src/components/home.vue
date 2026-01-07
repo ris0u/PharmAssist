@@ -56,7 +56,7 @@ const missedText = ref("#BE3939");
 const successText = ref("#059669");
 const pendingText = ref("#1E40AF");
 
-// Medicine Data
+// Medicine Data Arrays
 const timeTake = ref([
   "before breakfast",
   "with breakfast",
@@ -81,6 +81,12 @@ const successMessage = ref([
   "Missed",
   "Great Job!",
   "Coming up next!",
+]);
+
+const greetings = ref([
+  "Good morning",
+  "Good afternoon",
+  "Good evening",
 ]);
 
 // array of medicine data
@@ -176,7 +182,7 @@ const medData = ref([
       <span class="overview-heading">Weekly Overview</span>
     </div>
     <span class="overview-greetings">
-      Good afternoon, <span class="firstname">Lamuel!</span>
+      {{ greetings[0] }}, <span class="firstname">Lamuel!</span>
     </span>
     <span class="greetings-extension">Hope your day is going wonderfully.</span>
   </div>

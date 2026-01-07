@@ -62,7 +62,7 @@
     max-width: 600px;
     margin: 40px auto;
     padding: 0 20px;
-    font-family: Poppins, sans-serif;
+    font-family: 'Inter', sans-serif;
   }
   
   .title {
