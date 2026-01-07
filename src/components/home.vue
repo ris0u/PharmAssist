@@ -10,6 +10,7 @@ import pendingpillIcon from '../assets/coloredpill-icon.svg';
 import compartmentIcon from '../assets/compartment-icon.svg';
 import timeIcon from '../assets/time-icon.svg';
 
+// Popup Modal form
 const store = useMedicineStore();
 
 const intakeType = ref("");
@@ -47,6 +48,7 @@ onMounted(() => {
   store.listenMedicines();
 });
 
+// Medicine Card Color Data
 const missedBackground = ref('#F1DBDB');
 const successBackground = ref("#ECFDF5");
 const pendingBackground = ref("#F3E9FF");
@@ -54,6 +56,7 @@ const missedText = ref("#BE3939");
 const successText = ref("#059669");
 const pendingText = ref("#1E40AF");
 
+// Medicine Data
 const timeTake = ref([
   "before breakfast",
   "with breakfast",
@@ -79,6 +82,7 @@ const successMessage = ref([
   "Coming up next!",
 ]);
 
+// array of medicine data
 const medData = ref([
   {
     Name: "Metformin",
@@ -149,11 +153,14 @@ const medData = ref([
         <li class="dropdown">
           <button class="dropbtn" @click="toggleDropdown">LB</button>
           <ul :class="{ 'dropdown-content': true, show: isDropdownOpen }">
-            <li><router-link to="/Edit profile">Edit profile</router-link></li>
             <li>
-              <router-link to="/Edit medication">Edit medication</router-link>
+              <router-link to="/editProfile">Edit profile</router-link></li>
+            <li>
+              <router-link @click="showModal = true">Edit medication</router-link>
             </li>
-            <li><router-link to="/login">Logout</router-link></li>
+            <li>
+              <router-link to="/login">Logout</router-link>
+            </li>
           </ul>
         </li>
       </ul>
@@ -233,6 +240,9 @@ const medData = ref([
       </div>
     </div>
   </div>
+
+  <!-- Popup Modal Form-->
+  
 </template>
 
 <style scoped>
@@ -489,9 +499,10 @@ const medData = ref([
 .time-box {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: left;
+  gap: 12px;
   background-color: #f9f9f0;
-  padding: 1.2rem 1rem;
+  padding: 1.5rem 1rem;
   width: 50%;
   border-radius: 20px;
 }
@@ -499,19 +510,30 @@ const medData = ref([
   background-color: transparent;
 }
 .time-icon img {
-  height: 24px;
-  width: 24px;
+  height: 28px;
+  width: 28px;
   background-color: transparent;
 }
 .time-text {
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #44403C;
+  background-color: transparent;
+}
+.box-text {
+  font-size: 1.2rem;
+  font-weight: 700;
   color: #44403C;
   background-color: transparent;
 }
 .compartment-icon img {
-  height: 24px;
-  width: 24px;
+  height: 28px;
+  width: 28px;
   background-color: transparent;
 }
+
+/* Popup Modal styles */
+
 </style>
+
+
