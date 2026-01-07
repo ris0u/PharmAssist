@@ -54,62 +54,20 @@ const missedText = ref("#BE3939");
 const successText = ref("#059669");
 const pendingText = ref("#1E40AF");
 
-const medData = ref([
-  {
-    Name: "Metformin",
-    supply: "15 tablets",
-    time: "12:00 PM",
-    dose: "500mg",
-    status: "missed",
-    statusIcon: missedIcon,
-    pillIcon: missedpillIcon,
-    background: missedBackground,
-    textColor: missedText,
-  },
-  {
-    Name: "Lisinopril",
-    supply: "19 tablets",
-    time: "8:00 AM",
-    dose: "10mg",
-    status: "Great Job!",
-    statusIcon: successIcon,
-    pillIcon: takenpillIcon,
-    background: successBackground,
-    textColor: successText,
-  },
-  {
-    Name: "Atorvastatin",
-    supply: "11 tablets",
-    time: "8:00 PM",
-    dose: "20mg",
-    status: "Coming up next",
-    statusIcon: pendingIcon,
-    pillIcon: pendingpillIcon,
-    background: pendingBackground,
-    textColor: pendingText,
-  },
-  {
-    Name: "Amoxicillin",
-    supply: "8 tablets",
-    time: "10:00 PM",
-    dose: "10mg",
-    status: "Coming up next",
-    statusIcon: pendingIcon,
-    pillIcon: pendingpillIcon,
-    background: pendingBackground,
-    textColor: pendingText,
-  }
-]);
-
 const timeTake = ref([
-  "before morning",
+  "before breakfast",
   "with breakfast",
+  "after breakfast",
+  "before lunch",
+  "with lunch",
   "after lunch",
   "before dinner",
+  "with dinner",
+  "after dinner",
   "before bedtime",
 ]);
 
-const boxType = ref([
+const boxOrder = ref([
   "Compartment A",
   "Compartment B",
   "Compartment C",
@@ -119,6 +77,61 @@ const boxType = ref([
 const successMessage = ref([
   "Great Job!",
   "Coming up next!",
+]);
+
+const medData = ref([
+  {
+    Name: "Metformin",
+    supply: "15 tablets",
+    timeDesc: timeTake.value[3],
+    scheduledTime: "12:00 PM",
+    dose: "500mg",
+    compartment: boxOrder.value[0],
+    status: "missed",
+    statusIcon: missedIcon,
+    pillIcon: missedpillIcon,
+    background: missedBackground,
+    textColor: missedText,
+  },
+  {
+    Name: "Lisinopril",
+    supply: "19 tablets",
+    timeDesc: timeTake.value[0],
+    scheduledTime: "8:00 AM",
+    dose: "10mg",
+    compartment: boxOrder.value[1],
+    status: "Great Job!",
+    statusIcon: successIcon,
+    pillIcon: takenpillIcon,
+    background: successBackground,
+    textColor: successText,
+  },
+  {
+    Name: "Atorvastatin",
+    supply: "11 tablets",
+    timeDesc: timeTake.value[9],
+    scheduledTime: "8:00 PM",
+    dose: "20mg",
+    compartment: boxOrder.value[2],
+    status: "Coming up next",
+    statusIcon: pendingIcon,
+    pillIcon: pendingpillIcon,
+    background: pendingBackground,
+    textColor: pendingText,
+  },
+  {
+    Name: "Amoxicillin",
+    supply: "8 tablets",
+    timeDesc: timeTake.value[8],
+    scheduledTime: "10:00 PM",
+    dose: "10mg",
+    compartment: boxOrder.value[3],
+    status: "Coming up next",
+    statusIcon: pendingIcon,
+    pillIcon: pendingpillIcon,
+    background: pendingBackground,
+    textColor: pendingText,
+  }
 ]);
 </script>
 
@@ -170,23 +183,50 @@ const successMessage = ref([
 
     <div class="medication-container">
       <div class="medcards">
-        <div class="medcard glass-panel" 
+        <div class="medcard" 
         v-for="med in medData" 
-        :key="med.Name">
+        :key="med.Name"
+                :style="{
+          borderLeftColor: med.textColor
+        }">
           <div class="medcard-header">
             <div class="medcard-alert-container"
               :style="{
                 backgroundColor: med.background,
                 color: med.textColor
-              }"
-            >
+              }">
               <div class="medcard-alert-icon">
                 <img :src="med.statusIcon" />
               </div>
               <span class="medcard-alert-text">{{ med.status }}</span>
             </div>
             <div class="pillcolor">
-              <img :src="med.pillIcon" alt="pill icon" />
+              <img :src="med.pillIcon" alt="pill icon"/>
+            </div>
+          </div>
+
+          <div class="medicine-name-container">
+            <div class="medicine-name">
+              <h3>{{ med.Name }}</h3>
+              <p>{{ med.supply }} left</p>
+            </div>
+            <span class="medicine-description">
+              Take {{ med.dose }} {{ med.timeDesc }}
+            </span>
+          </div>
+          
+          <div class="time-box-container">
+            <div class="time-box">
+              <div class="time-icon">
+                <img :src="timeIcon" alt="time icon"/>
+              </div>
+              <span class="time-text">{{ med.scheduledTime }}</span>
+            </div>
+            <div class="time-box">
+              <div class="compartment-icon">
+                <img :src="compartmentIcon" alt="compartment icon"/>
+              </div>
+              <span class="box-text">{{ med.compartment }}</span>
             </div>
           </div>
         </div>
@@ -367,21 +407,15 @@ const successMessage = ref([
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(35%, 1fr));
   gap: 1.5rem;
-}
-.glass-panel {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: none;
 }
 .medcard {
   border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-left: 8px solid #1E40AF;
+  border-left: 8px solid ;
   background-color: transparent;
   background-color: #FFFFFF;
-
 }
 .medcard-header {
   display: flex;
@@ -389,20 +423,20 @@ const successMessage = ref([
   align-items: center;
   margin-bottom: 1rem;
   background-color: transparent;
+  fill: none;
 }
 .medcard-alert-container {
   display: flex;
   align-items: center;
   gap: 12px;
   font-weight: 600;
-  background-color: medbackground;
   border-radius: 28px;
   height: 2.5rem;
   width: fit-content;
   padding: 0 1rem;
 }
 .pillcolor img{
-  background-color: transparent;
+  background-color: #FFFFFF;
 }
 .medcard-alert-icon{
   background-color: transparent;
@@ -412,8 +446,72 @@ const successMessage = ref([
   width: 24px;
   background-color: transparent;
 }
-.medcard-alert-text{
+.medcard-alert-text {
   background-color: transparent;
 }
-
+.medicine-name-container {
+  background-color: transparent;
+  
+}
+.medicine-name {
+  margin-top: 1.5rem;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.medicine-name h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #44403C;
+  background-color: transparent;
+}
+.medicine-name p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #78716C;
+  background-color: transparent;
+}
+.medicine-description {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #44403C;
+  background-color: transparent;
+}
+.time-box-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  background-color: transparent;
+}
+.time-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f9f9f0;
+  padding: 1.2rem 1rem;
+  width: 50%;
+  border-radius: 20px;
+}
+.time-icon {
+  background-color: transparent;
+}
+.time-icon img {
+  height: 24px;
+  width: 24px;
+  background-color: transparent;
+}
+.time-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #44403C;
+  background-color: transparent;
+}
+.compartment-icon img {
+  height: 24px;
+  width: 24px;
+  background-color: transparent;
+}
 </style>

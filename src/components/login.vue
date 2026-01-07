@@ -1,6 +1,6 @@
 <template>
     <div class="page">
-      <h2 class="title">Login</h2>
+      <h2 class="title">Login to access the dashboard</h2>
   
       <div class="card auth-card">
         <h3>Welcome Back</h3>
@@ -55,6 +55,7 @@
   </script>
   
   <style scoped>
+  
   .page {
     min-height: 100vh;
     background: #f4f6f8;
@@ -62,7 +63,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: Arial, sans-serif;
+    font-family: "Inter", sans-serif;
   }
   
   .title {
@@ -81,10 +82,14 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   }
   
+  .card form{
+    background-color: transparent;
+  }
   h3 {
     text-align: center;
     margin-bottom: 20px;
     color: #444;
+    background-color: transparent;
   }
   
   input, button {
@@ -111,7 +116,9 @@
     text-align: center;
     font-size: 14px;
     color: #555;
+    background-color: transparent;
   }
+  
   
   .switch a {
     color: #4f46e5;
