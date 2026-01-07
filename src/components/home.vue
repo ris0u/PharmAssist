@@ -47,6 +47,13 @@ onMounted(() => {
   store.listenMedicines();
 });
 
+const missedBackground = ref('#F1DBDB');
+const successBackground = ref("#ECFDF5");
+const pendingBackground = ref("#F3E9FF");
+const missedText = ref("#BE3939");
+const successText = ref("#059669");
+const pendingText = ref("#1E40AF");
+
 const medData = ref([
   {
     Name: "Metformin",
@@ -56,6 +63,8 @@ const medData = ref([
     status: "missed",
     statusIcon: missedIcon,
     pillIcon: missedpillIcon,
+    background: missedBackground,
+    textColor: missedText,
   },
   {
     Name: "Lisinopril",
@@ -65,6 +74,8 @@ const medData = ref([
     status: "Great Job!",
     statusIcon: successIcon,
     pillIcon: takenpillIcon,
+    background: successBackground,
+    textColor: successText,
   },
   {
     Name: "Atorvastatin",
@@ -74,6 +85,8 @@ const medData = ref([
     status: "Coming up next",
     statusIcon: pendingIcon,
     pillIcon: pendingpillIcon,
+    background: pendingBackground,
+    textColor: pendingText,
   },
   {
     Name: "Amoxicillin",
@@ -83,6 +96,8 @@ const medData = ref([
     status: "Coming up next",
     statusIcon: pendingIcon,
     pillIcon: pendingpillIcon,
+    background: pendingBackground,
+    textColor: pendingText,
   }
 ]);
 
@@ -159,13 +174,20 @@ const successMessage = ref([
         v-for="med in medData" 
         :key="med.Name">
           <div class="medcard-header">
-            <div class="medcard-alert-container">
+            <div class="medcard-alert-container"
+              :style="{
+                backgroundColor: med.background,
+                color: med.textColor
+              }"
+            >
               <div class="medcard-alert-icon">
                 <img :src="med.statusIcon" />
               </div>
               <span class="medcard-alert-text">{{ med.status }}</span>
             </div>
-            <img :src="med.pillIcon" alt="pill icon" />
+            <div class="pillcolor">
+              <img :src="med.pillIcon" alt="pill icon" />
+            </div>
           </div>
         </div>
       </div>
@@ -215,6 +237,7 @@ const successMessage = ref([
 .logo-container img {
   height: 32px;
   width: 32px;
+  background-color: transparent;
 }
 
 /* Avatar Dropdown */
@@ -337,35 +360,60 @@ const successMessage = ref([
 }
 .medication-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(2, 2fr));
   gap: 2rem;
   overflow-x: auto;
 }
 .medcards {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35%, 1fr));
   gap: 1.5rem;
 }
+.glass-panel {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
 .medcard {
-  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-  padding: 1rem;
-  width: 35%;
+  padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 8px solid #1E40AF;
+  background-color: transparent;
+  background-color: #FFFFFF;
+
 }
 .medcard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  background-color: transparent;
 }
 .medcard-alert-container {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   font-weight: 600;
+  background-color: medbackground;
+  border-radius: 28px;
+  height: 2.5rem;
+  width: fit-content;
+  padding: 0 1rem;
+}
+.pillcolor img{
+  background-color: transparent;
+}
+.medcard-alert-icon{
+  background-color: transparent;
 }
 .medcard-alert-icon img {
   height: 24px;
   width: 24px;
+  background-color: transparent;
 }
+.medcard-alert-text{
+  background-color: transparent;
+}
+
 </style>
