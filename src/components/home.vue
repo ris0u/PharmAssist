@@ -49,7 +49,7 @@ onMounted(() => {
 });
 
 // Medicine Card Color Data
-const missedBackground = ref('#F1DBDB');
+const missedBackground = ref('#FFE6E6');
 const successBackground = ref("#ECFDF5");
 const pendingBackground = ref("#F3E9FF");
 const missedText = ref("#BE3939");
