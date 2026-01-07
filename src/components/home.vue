@@ -1,6 +1,14 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useMedicineStore } from "../JS/handlemedicine";
+import pendingIcon from '../assets/pending-icon.svg';
+import successIcon from '../assets/check-icon.svg';
+import missedIcon from '../assets/missed-icon.svg';
+import takenpillIcon from '../assets/graypill-icon.svg';
+import missedpillIcon from '../assets/missedpill-icon.svg';
+import pendingpillIcon from '../assets/coloredpill-icon.svg';
+import compartmentIcon from '../assets/compartment-icon.svg';
+import timeIcon from '../assets/time-icon.svg';
 
 const store = useMedicineStore();
 
@@ -15,6 +23,7 @@ const isDropdownOpen = ref(false);
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 };
+
 
 const save = async () => {
   await store.saveMedicine(
@@ -37,6 +46,65 @@ const save = async () => {
 onMounted(() => {
   store.listenMedicines();
 });
+
+const medData = ref([
+  {
+    Name: "Metformin",
+    supply: "15 tablets",
+    time: "12:00 PM",
+    dose: "500mg",
+    status: "missed",
+    statusIcon: missedIcon,
+    pillIcon: missedpillIcon,
+  },
+  {
+    Name: "Lisinopril",
+    supply: "19 tablets",
+    time: "8:00 AM",
+    dose: "10mg",
+    status: "Great Job!",
+    statusIcon: successIcon,
+    pillIcon: takenpillIcon,
+  },
+  {
+    Name: "Atorvastatin",
+    supply: "11 tablets",
+    time: "8:00 PM",
+    dose: "20mg",
+    status: "Coming up next",
+    statusIcon: pendingIcon,
+    pillIcon: pendingpillIcon,
+  },
+  {
+    Name: "Amoxicillin",
+    supply: "8 tablets",
+    time: "10:00 PM",
+    dose: "10mg",
+    status: "Coming up next",
+    statusIcon: pendingIcon,
+    pillIcon: pendingpillIcon,
+  }
+]);
+
+const timeTake = ref([
+  "before morning",
+  "with breakfast",
+  "after lunch",
+  "before dinner",
+  "before bedtime",
+]);
+
+const boxType = ref([
+  "Compartment A",
+  "Compartment B",
+  "Compartment C",
+  "Compartment D",
+]);
+
+const successMessage = ref([
+  "Great Job!",
+  "Coming up next!",
+]);
 </script>
 
 <template>
@@ -80,10 +148,27 @@ onMounted(() => {
   <div class="schedule-container">
     <div class="schedule-heading">
       <span class="schedule-title">Your Weekly's Schedule</span>
-      <span class="medication-progress"> 2 remaining </span>
+      <span class="medprogress-container">
+        <span class="medication-progress"> 2 remaining </span>
+      </span>
     </div>
-    <div class="daily-schedule">
-      
+
+    <div class="medication-container">
+      <div class="medcards">
+        <div class="medcard glass-panel" 
+        v-for="med in medData" 
+        :key="med.Name">
+          <div class="medcard-header">
+            <div class="medcard-alert-container">
+              <div class="medcard-alert-icon">
+                <img :src="med.statusIcon" />
+              </div>
+              <span class="medcard-alert-text">{{ med.status }}</span>
+            </div>
+            <img :src="med.pillIcon" alt="pill icon" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -124,7 +209,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  box-shadow: 0px 1px 6px rgb(219, 219, 219);
+  box-shadow: -1px 2px 6px rgb(219, 219, 219);
 }
 
 .logo-container img {
@@ -149,7 +234,6 @@ onMounted(() => {
   border-radius: 50%;
   font-size: x-large;
   font-weight: 500;
-  box-shadow: 0px 1px 6px rgb(219, 219, 219);
 }
 
 .dropdown-content {
@@ -222,4 +306,66 @@ onMounted(() => {
   color: #78716C;
 }
 
+/* schedule */
+.schedule-container {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2.5rem;
+}
+.schedule-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.schedule-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #44403C;
+}
+.medprogress-container {
+  background-color: #fcf7e5;
+  padding: 0.5rem 1.5rem;
+  border-radius: 28px;
+}
+.medication-progress {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #F59E0B;
+  overflow: hidden;
+  background-color: transparent;
+}
+.medication-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(2, 2fr));
+  gap: 2rem;
+  overflow-x: auto;
+}
+.medcards {
+  display: flex;
+  gap: 1.5rem;
+}
+.medcard {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1rem;
+  width: 35%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.medcard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.medcard-alert-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 600;
+}
+.medcard-alert-icon img {
+  height: 24px;
+  width: 24px;
+}
 </style>
