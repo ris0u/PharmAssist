@@ -157,7 +157,7 @@ const medData = ref([
             <li>
               <router-link to="/editProfile">Edit profile</router-link></li>
             <li>
-              <router-link @click="showModal = true">Edit medication</router-link>
+              <router-link to="/editMedication">Edit medication</router-link>
             </li>
             <li>
               <router-link to="/login">Logout</router-link>
@@ -310,6 +310,7 @@ const medData = ref([
   font-weight: 500;
 }
 
+
 .dropdown-content {
   display: none;
   flex-direction: column;
@@ -338,6 +339,7 @@ const medData = ref([
   display: block;
   padding: 10px;
   text-decoration: none;
+  border: none;
   color: #1e40af;
 }
 
