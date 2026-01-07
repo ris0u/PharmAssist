@@ -78,6 +78,7 @@ const boxOrder = ref([
 ]);
 
 const successMessage = ref([
+  "Missed",
   "Great Job!",
   "Coming up next!",
 ]);
@@ -91,7 +92,7 @@ const medData = ref([
     scheduledTime: "12:00 PM",
     dose: "500mg",
     compartment: boxOrder.value[0],
-    status: "missed",
+    status: successMessage.value[0],
     statusIcon: missedIcon,
     pillIcon: missedpillIcon,
     background: missedBackground,
@@ -104,7 +105,7 @@ const medData = ref([
     scheduledTime: "8:00 AM",
     dose: "10mg",
     compartment: boxOrder.value[1],
-    status: "Great Job!",
+    status: successMessage.value[1],
     statusIcon: successIcon,
     pillIcon: takenpillIcon,
     background: successBackground,
@@ -117,7 +118,7 @@ const medData = ref([
     scheduledTime: "8:00 PM",
     dose: "20mg",
     compartment: boxOrder.value[2],
-    status: "Coming up next",
+    status: successMessage.value[2],
     statusIcon: pendingIcon,
     pillIcon: pendingpillIcon,
     background: pendingBackground,
@@ -130,7 +131,7 @@ const medData = ref([
     scheduledTime: "10:00 PM",
     dose: "10mg",
     compartment: boxOrder.value[3],
-    status: "Coming up next",
+    status: successMessage.value[2],
     statusIcon: pendingIcon,
     pillIcon: pendingpillIcon,
     background: pendingBackground,
