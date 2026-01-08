@@ -117,6 +117,7 @@ const toggleDropdown = () => {
   text-align: right;
   border-radius: 16px;
   overflow: hidden;
+  border-bottom: 5px solid #f3e9ff;
 }
 
 .dropdown-content.show {

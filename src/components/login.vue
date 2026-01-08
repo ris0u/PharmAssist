@@ -21,7 +21,7 @@
       </form>
       <p class="switch">
         Don't have an account?
-        <router-link to="/register">Register</router-link>
+        <router-link to="/register" class="signup">Sign Up</router-link>
       </p>
     </div>
     <img :src="background" alt="Background" class="background-image" />
@@ -60,7 +60,6 @@ function submitlogin() {
   justify-content: center;
   font-family: "Inter", sans-serif;
   gap: 1rem;
-
 }
 
 .card {
@@ -85,16 +84,17 @@ function submitlogin() {
   margin-left: -0.5rem;
   background-color: transparent;
   gap: 0.3rem;
+  user-select: none;
 }
-.logo-container{
+.logo-container {
   background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.logo-container img{
+.logo-container img {
   background-color: transparent;
-  height: 16px;
+  height: 20px;
   width: 20px;
 }
 
@@ -105,6 +105,7 @@ function submitlogin() {
   color: #44403c;
   background-color: transparent;
   margin-bottom: 1.5rem;
+  user-select: none;
 }
 
 .login-title {
@@ -113,6 +114,7 @@ function submitlogin() {
   font-weight: 700;
   font-size: x-large;
   background-color: transparent;
+  user-select: none;
 }
 
 .logo-name {
@@ -124,15 +126,18 @@ function submitlogin() {
 
 .card form {
   background-color: transparent;
+  user-select: none;
 }
 
-input, button {
+input,
+button {
   width: 100%;
   padding: 10px;
   margin-bottom: 1.1rem;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 14px;
+  background-color: transparent;
 }
 
 button {
@@ -151,6 +156,7 @@ button:hover {
   font-size: 14px;
   color: #555;
   background-color: transparent;
+  user-select: none;
 }
 
 .switch a {
@@ -158,7 +164,11 @@ button:hover {
   text-decoration: none;
 }
 
-.background-image{
+.signup {
+  background-color: transparent;
+}
+
+.background-image {
   top: 0;
   left: 0;
   width: 25vw;
@@ -167,6 +177,5 @@ button:hover {
   border: 10px solid #fff;
   outline-offset: -10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-
 }
 </style>

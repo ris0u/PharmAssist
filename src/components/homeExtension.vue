@@ -43,7 +43,7 @@
             <img :src="completed_icon" alt="temp-icon" class="temp-icon" />
           </div>
           <div class="weekly-content">
-            <p>Teu</p>
+            <p>Tue</p>
             <img :src="completed_icon" alt="temp-icon" class="temp-icon" />
           </div>
           <div class="weekly-content">
@@ -110,11 +110,12 @@ const temphumStore = useHandleTemphum();
 setInterval(() => {
   temphumStore.generateRandomData();
 }, 3000);
-
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  font-family: 'inter', sans-serif;
+}
 
 body {
   font-family: "Inter", sans-serif;
@@ -202,6 +203,7 @@ body {
 .temp-icon {
   width: 55px;
   height: 55px;
+  background-color: transparent;
 }
 
 .weekly-holder {
@@ -246,7 +248,9 @@ body {
   position: absolute;
   right: 0;
   bottom: 0;
+  background-color: transparent;
 }
+
 
 
 .weekly-legend {
@@ -346,5 +350,6 @@ body {
 .messeges-img {
   width: 18px;
   height: 17px;
+  background-color: transparent;
 }
 </style>
