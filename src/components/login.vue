@@ -164,7 +164,6 @@ button:hover {
   width: 25vw;
   height: 70vh;
   z-index: 1;
-  position: ;
   border: 10px solid #fff;
   outline-offset: -10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
