@@ -352,7 +352,8 @@ const medData = ref([
   background-color: transparent;
 }
 .time-box-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin-top: 1.5rem;
   background-color: transparent;
@@ -364,7 +365,7 @@ const medData = ref([
   gap: 12px;
   background-color: #f9f9f0;
   padding: 1.5rem 1rem;
-  width: 50%;
+  width: 100%;
   border-radius: 20px;
 }
 .time-icon {
