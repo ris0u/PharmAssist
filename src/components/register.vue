@@ -92,6 +92,7 @@ const submitForm = async () => {
   flex-direction: column;
   margin-left: rem;
   height: 100vh;
+  background-color: #f4f6f8;
 }
 
 h2, h3 {

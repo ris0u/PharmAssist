@@ -289,8 +289,8 @@ const medData = ref([
   background-color: #FFFFFF;
 }
 .medcard-header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
   margin-bottom: 1rem;
   background-color: transparent;
