@@ -2,7 +2,12 @@
   <navBar />
   
   <div class="container">
-    <h2>Medicine Scheduler</h2>
+    <div class="medication-header">
+      <h2>Medicine Scheduler</h2>
+      <span class="homepagebtn"> 
+        <router-link to="/Home" class="hometext">Go Back</router-link>
+      </span>
+    </div>
 
     <div class="scheduler">
       <!-- LEFT: Form -->
@@ -95,6 +100,7 @@ import { ref, onMounted } from "vue"
 import { useMedicineStore } from "../JS/handlemedicine"
 
 import navBar from './navbar.vue';
+import { RouterLink } from "vue-router";
 const store = useMedicineStore()
 
 const intakeType = ref("")
@@ -142,6 +148,27 @@ h2 {
   text-align: center;
   margin-bottom: 30px;
   color: #333;
+}
+
+.medication-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.homepagebtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  background: #f3e9ff;
+  color: #1e40af;
+  border-radius: 16px;
+  height: 3rem
+}
+
+.hometext {
+  text-decoration: none;
+  background-color: transparent;
 }
 
 .scheduler {
