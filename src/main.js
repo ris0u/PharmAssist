@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import App from "./App.vue";
+import App from "./App.vue"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
@@ -11,6 +11,7 @@ import LoginPage from './components/login.vue'
 import RegisterPage from './components/register.vue'
 import Homepage from './components/home.vue'
 import EditMedication from './components/editmedication.vue'
+import Editprofile from './components/editProfile.vue'
 
 // Routes
 const routes = [
@@ -19,6 +20,7 @@ const routes = [
     { path: '/register', name: 'Register', component: RegisterPage },
     { path: '/home', name: 'Home', component: Homepage },
     { path: '/editmedication', name: 'EditMedication', component: EditMedication },
+    { path: '/editprofile', name: 'EditProfile', component: Editprofile},
 ]
 
 // Router instance
