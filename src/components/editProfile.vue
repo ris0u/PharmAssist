@@ -6,34 +6,40 @@
                 <router-link to="home" class="hometext"> Go Back </router-link>
             </div>
 
-
             <div class="main-content">
                 <div class="formcontent">
                     <h2> Update User Profile </h2>
                     <form @submit.prevent="submitForm">
                         <!-- USER INFO -->
-                        <input type="text" v-model="profile.user.name" placeholder="Full Name" required />
-                        <input type="email" v-model="profile.user.email" placeholder="Email" required />
-                        <input type="password" v-model="profile.user.password" placeholder="Password" required />
-                        <input type="password" v-model="confirm" placeholder="Confirm Password" required />
+                        <span class="name-field inputfield">
+                            <span>Name:</span>
+                            <input type="text" v-model="profile.user.name" placeholder="Full Name"/>
+                        </span>
+                        <span class="email-field inputfield">
+                            <span>Email:</span>
+                            <input type="email" v-model="profile.user.email" placeholder="Email"/>
+                        </span>
+                        <span class="password-field inputfield">
+                            <span>Password:</span>
+                            <input type="password" v-model="profile.user.password" placeholder="Password"/>
+                        </span>
                         <button type="submit">Update details</button>
                     </form>
                 </div>
 
                 <div class="updated-details">
                     <div class="userdetails">
-                        <div class="userdetails-title">
+                        <div class="userdetails-header">
                             <h3>Current User Details</h3>
                         </div>
-                        <p><strong>Name:</strong> {{ profile.user.name }}</p>
-                        <p><strong>Email:</strong> {{ profile.user.email }}</p>
-                        <p><strong>Password:</strong> {{ profile.user.password ? '********' : '' }}</p>
+                        <p class="userdetails-title"><strong>Name:</strong> {{ profile.user.name }}</p>
+                        <p class="userdetails-title"><strong>Email:</strong> {{ profile.user.email }}</p>
+                        <p class="userdetails-title"><strong>Password:</strong> {{ profile.user.password ? '********' : '' }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </template>
 
 <script setup>
@@ -67,10 +73,6 @@ onMounted(async () => {
 });
 
 const submitForm = async () => {
-    if (profile.user.password !== confirm.value) {
-        alert("Passwords do not match!");
-        return;
-    }
     const updated = await profile.updateProfile();
     if (updated) {
         alert("Profile updated successfully!");
@@ -94,7 +96,7 @@ const submitForm = async () => {
     justify-content: center;
     align-items: center;
     width: 80%;
-    height: 80vh;
+    height: 65vh;
     margin: 0;
     padding: 0;
     gap: 0.5rem;
@@ -104,9 +106,7 @@ const submitForm = async () => {
     display: flex;
     align-items: center;
     justify-content: right;
-    width: 100%;
-    padding-left: 5rem;
-    padding-right: 5rem;
+    width: 70%;
 }
 
 .hometext {
@@ -120,6 +120,7 @@ const submitForm = async () => {
     border-radius: 12px;
     color: #1e40af;
     margin-right: 5%;
+    border: 10px solid #f3e9ff;
 }
 
 h2 {
@@ -142,11 +143,12 @@ h2 {
     background-color: #fff;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     border-radius: 24px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    padding: 4rem;
+    padding: 2rem;
+    gap: 1rem;
+    padding-top: 3rem;
 }
 
 .formcontent form {
@@ -160,7 +162,7 @@ h2 {
 .formcontent input,
 .formcontent button {
     width: 20vw;
-    padding: 0.5rem;
+    padding: 1rem;
     background-color: transparent;
     border-radius: 12px;
     height: 3.5rem;
@@ -172,12 +174,28 @@ h2 {
     background-color: #d0fae6;
     color: #059669;
     font-weight: 600;
-    border: none;
+    border: 2px solid #96ffdc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputfield {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    background-color: transparent;
+}
+
+.inputfield span{
+    background-color: transparent;
+    font-weight: 600;
+    color: #44403c;
 }
 
 .updated-details {
     background-color: #fff;
-    color: #444430;
+    color: #44403c;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
     display: flex;
@@ -192,17 +210,30 @@ h2 {
 }
 
 .userdetails p, .userdetails h3 {
-    background-color: #fff
+    background-color: transparent;
 }
 
 .userdetails h3{
     font-weight: 600;
+    margin-top: 1rem;
 }
 
-.userdetails-title {
+.userdetails p{
+    margin-left: 1rem;
+    margin-top: 2rem;
+}
+
+.userdetails-header {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: transparent;
 }
+
+.userdetails-title p {
+    background-color: #fff;
+}
+
+
+
 </style>
