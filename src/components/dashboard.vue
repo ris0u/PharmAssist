@@ -61,6 +61,7 @@
   flex-grow: 1;
   padding: 30px;
   overflow-y: auto;
+  padding-top: 3rem;
 }
 
 /* Header */
@@ -72,7 +73,7 @@
   flex-direction: column;
   height: 100vh;
   width: 17%;
-  gap: 5rem;
+  gap: 3rem;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

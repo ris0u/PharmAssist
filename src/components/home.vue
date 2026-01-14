@@ -216,7 +216,7 @@ const medData = ref([
 .overview-greetings {
   display: block;
   margin-top: 1rem;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
   color: #44403C;
 }
