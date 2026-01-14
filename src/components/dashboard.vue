@@ -74,7 +74,7 @@
   width: 17%;
   gap: 5rem;
   background-color: #fff;
-  box-shadow: 2px 2px 16px rgb(219, 219, 219);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .left-header {
@@ -161,7 +161,7 @@
 .navlink li a {
   text-decoration: none;
   background-color: transparent;
-  font-size: 1.3rem;
+  font-size: larger;
   font-weight: 600;
   height: 100%;
   width: 100%;
@@ -173,11 +173,12 @@
 }
 
 .navlink li a {
-  color: #f59e0b;
+  color: #95510d;
   border: 3px solid transparent;
   border-radius: 12px;
   border: 3px solid;
   border-color: #f59e0b;
+  box-shadow: -1px 2px 6px rgb(219, 219, 219);
 }
 
 .logoutbtn li a {
@@ -187,7 +188,7 @@
   width: 100%;
   text-decoration: none;
   background-color: transparent;
-  font-size: large;
+  font-size: larger;
   font-weight: 600;
   height: 100%;
   width: 100%;
@@ -196,5 +197,26 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+::-webkit-scrollbar {
+  width: 12px;              
+  height: 12px;           
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #ff7e5f, #feb47b);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #ee0979, #ff6a00);
+}
+
 </style>
