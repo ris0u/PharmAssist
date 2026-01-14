@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted, watchEffect } from "vue";
+  import { ref, onMounted } from "vue";
   import { useHandleSchedule } from '../JS/handleschedule';
   import pendingIcon from '../assets/pending-icon.svg';
   import successIcon from '../assets/check-icon.svg';
@@ -32,65 +32,28 @@
   const boxOrder = ref(["Compartment A","Compartment B","Compartment C","Compartment D"]);
   const successMessage = ref(["Missed","Great Job!","Coming up next!", "Coming Soon!"]);
   const greetings = ref(["Good morning","Good afternoon","Good evening"]);
-
+  
   let remainingMeds = ref(0);
   
   // Reactive medData array
   const medData = ref([]);
   
-  // Fetch schedule and update medData
-  onMounted(async () => {
-    await scheduleStore.fetchBoxes();
-
-    remainingMeds = scheduleStore.medremain
-
-    function schedtype(type){
-      if (type === "daily") {
-        return timeTake.value[10];
-      } else if (type === "weekly") {
-        return timeTake.value[11];
-      } else {
-        return "";
-      }
-    }
-
-    function currentmedstatus(status){
-      if (status === "missed") {
-        return {
-          status: successMessage.value[0],
-          background: missedBackground.value,
-          textColor: missedText.value,
-          statusIcon: missedIcon,
-          pillIcon: missedpillIcon,
-        };
-      } else if (status === "taken") {
-        return {
-          status: successMessage.value[1],
-          background: successBackground.value,
-          textColor: successText.value,
-          statusIcon: successIcon,
-          pillIcon: takenpillIcon,
-        };
-      } else if (status === "pending") {
-        return {
-          status: successMessage.value[2],
-          background: pendingBackground.value,
-          textColor: pendingText.value,
-          statusIcon: pendingIcon,
-          pillIcon: pendingpillIcon,
-        };
-      } else {
-        return {
-          status: successMessage.value[3],
-          background: missedBackground.value,
-          textColor: missedText.value,
-          statusIcon: missedIcon,
-          pillIcon: missedpillIcon,
-        };
-      }
-    }
-    
-    // Fill medData once store is populated
+  // Helper functions
+  function schedtype(type){
+    if (type === "daily") return timeTake.value[10];
+    else if (type === "weekly") return timeTake.value[11];
+    else return "";
+  }
+  
+  function currentmedstatus(status){
+    if (status === "missed") return { status: successMessage.value[0], background: missedBackground.value, textColor: missedText.value, statusIcon: missedIcon, pillIcon: missedpillIcon };
+    else if (status === "taken") return { status: successMessage.value[1], background: successBackground.value, textColor: successText.value, statusIcon: successIcon, pillIcon: takenpillIcon };
+    else if (status === "pending") return { status: successMessage.value[2], background: pendingBackground.value, textColor: pendingText.value, statusIcon: pendingIcon, pillIcon: pendingpillIcon };
+    else return { status: successMessage.value[3], background: missedBackground.value, textColor: missedText.value, statusIcon: missedIcon, pillIcon: missedpillIcon };
+  }
+  
+  // Build medData array from scheduleStore
+  function buildMedData() {
     medData.value = [
       {
         Name: scheduleStore.box1medicine || "No medicine",
@@ -145,8 +108,22 @@
         textColor: currentmedstatus(scheduleStore.box4status || "n/a").textColor,
       }
     ];
-  });
+    remainingMeds.value = scheduleStore.medremain;
+  }
+  
+  onMounted(async () => {
+    scheduleStore.medremain = 0
+    await scheduleStore.fetchBoxes()
+    buildMedData()
+  
+    setInterval(async () => {
+      scheduleStore.medremain = 0
+      await scheduleStore.fetchBoxes()
+      buildMedData()
+    }, 5000)
+  })
   </script>
+  
   
 
 <template>
