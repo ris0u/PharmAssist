@@ -6,6 +6,7 @@ export const handlelogin = defineStore('profile', {
   state: () => ({
     email: '',
     password: '',
+    name: '',
     lastLog: null,  
     safeEmail:''
   }),
@@ -36,7 +37,9 @@ export const handlelogin = defineStore('profile', {
           await update(userRef, { lastLog: now })
 
           this.lastLog = now
+          this.name = snapshot.val().name || '' 
           console.log('Updated lastLog:', now)
+          console.log('User name:', this.name)
           return true
         }
       } catch (err) {

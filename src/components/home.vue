@@ -27,11 +27,13 @@
     "before breakfast","with breakfast","after breakfast",
     "before lunch","with lunch","after lunch",
     "before dinner","with dinner","after dinner",
-    "before bedtime",
+    "before bedtime", "every Day", "every Week", ""
   ]);
   const boxOrder = ref(["Compartment A","Compartment B","Compartment C","Compartment D"]);
-  const successMessage = ref(["Missed","Great Job!","Coming up next!"]);
+  const successMessage = ref(["Missed","Great Job!","Coming up next!", "Coming Soon!"]);
   const greetings = ref(["Good morning","Good afternoon","Good evening"]);
+
+  let remainingMeds = ref(0);
   
   // Reactive medData array
   const medData = ref([]);
@@ -39,60 +41,108 @@
   // Fetch schedule and update medData
   onMounted(async () => {
     await scheduleStore.fetchBoxes();
-  
+
+    remainingMeds = scheduleStore.medremain
+
+    function schedtype(type){
+      if (type === "daily") {
+        return timeTake.value[10];
+      } else if (type === "weekly") {
+        return timeTake.value[11];
+      } else {
+        return "";
+      }
+    }
+
+    function currentmedstatus(status){
+      if (status === "missed") {
+        return {
+          status: successMessage.value[0],
+          background: missedBackground.value,
+          textColor: missedText.value,
+          statusIcon: missedIcon,
+          pillIcon: missedpillIcon,
+        };
+      } else if (status === "taken") {
+        return {
+          status: successMessage.value[1],
+          background: successBackground.value,
+          textColor: successText.value,
+          statusIcon: successIcon,
+          pillIcon: takenpillIcon,
+        };
+      } else if (status === "pending") {
+        return {
+          status: successMessage.value[2],
+          background: pendingBackground.value,
+          textColor: pendingText.value,
+          statusIcon: pendingIcon,
+          pillIcon: pendingpillIcon,
+        };
+      } else {
+        return {
+          status: successMessage.value[3],
+          background: missedBackground.value,
+          textColor: missedText.value,
+          statusIcon: missedIcon,
+          pillIcon: missedpillIcon,
+        };
+      }
+    }
+    
     // Fill medData once store is populated
     medData.value = [
       {
         Name: scheduleStore.box1medicine || "No medicine",
         supply: (scheduleStore.box1dose || 0) + " tablets",
-        timeDesc: timeTake.value[3],
+        timeDesc: schedtype(scheduleStore.box1schedtype || "n/a"),
         scheduledTime: scheduleStore.box1shed || "N/A",
         dose: "500mg",
         compartment: boxOrder.value[0],
-        status: successMessage.value[0],
-        statusIcon: missedIcon,
-        pillIcon: missedpillIcon,
-        background: missedBackground,
-        textColor: missedText,
+        status: currentmedstatus(scheduleStore.box1status || "n/a").status,
+        statusIcon: currentmedstatus(scheduleStore.box1status || "n/a").statusIcon,
+        pillIcon: currentmedstatus(scheduleStore.box1status || "n/a").pillIcon,
+        background: currentmedstatus(scheduleStore.box1status || "n/a").background,
+        textColor: currentmedstatus(scheduleStore.box1status || "n/a").textColor,
       },
       {
         Name: scheduleStore.box2medicine || "No medicine",
         supply: (scheduleStore.box2dose || 0) + " tablets",
-        timeDesc: timeTake.value[4],
+        timeDesc: schedtype(scheduleStore.box2schedtype || "n/a"),
         scheduledTime: scheduleStore.box2shed || "N/A",
         dose: "10mg",
         compartment: boxOrder.value[1],
-        status: successMessage.value[1],
-        statusIcon: successIcon,
-        pillIcon: takenpillIcon,
-        background: successBackground,
-        textColor: successText,
+        status: currentmedstatus(scheduleStore.box2status || "n/a").status,
+        statusIcon: currentmedstatus(scheduleStore.box2status || "n/a").statusIcon,
+        pillIcon: currentmedstatus(scheduleStore.box2status || "n/a").pillIcon,
+        background: currentmedstatus(scheduleStore.box2status || "n/a").background,
+        textColor: currentmedstatus(scheduleStore.box2status || "n/a").textColor,
       },
       {
         Name: scheduleStore.box3medicine || "No medicine",
         supply: (scheduleStore.box3dose || 0) + " tablets",
-        timeDesc: timeTake.value[5],
+        timeDesc: schedtype(scheduleStore.box3schedtype || "n/a"),
         scheduledTime: scheduleStore.box3shed || "N/A",
         dose: "20mg",
         compartment: boxOrder.value[2],
-        status: successMessage.value[2],
-        statusIcon: pendingIcon,
-        pillIcon: pendingpillIcon,
-        background: pendingBackground,
-        textColor: pendingText,
+        status: currentmedstatus(scheduleStore.box3status || "n/a").status,
+        statusIcon: currentmedstatus(scheduleStore.box3status || "n/a").statusIcon,
+        pillIcon: currentmedstatus(scheduleStore.box3status || "n/a").pillIcon,
+        background: currentmedstatus(scheduleStore.box3status || "n/a").background,
+        textColor: currentmedstatus(scheduleStore.box3status || "n/a").textColor,
       },
       {
         Name: scheduleStore.box4medicine || "No medicine",
         supply: (scheduleStore.box4dose || 0) + " tablets",
-        timeDesc: timeTake.value[6],
+        timeDesc: schedtype(scheduleStore.box4schedtype || "n/a"),
         scheduledTime: scheduleStore.box4shed || "N/A",
         dose: "10mg",
         compartment: boxOrder.value[3],
-        status: successMessage.value[2],
-        statusIcon: pendingIcon,
-        pillIcon: pendingpillIcon,
-        background: pendingBackground,
-        textColor: pendingText,
+        status: currentmedstatus(scheduleStore.box4status || "n/a").status,
+        statusIcon: currentmedstatus(scheduleStore.box4status || "n/a").statusIcon,
+        pillIcon: currentmedstatus(scheduleStore.box4status || "n/a").pillIcon,
+        background: currentmedstatus(scheduleStore.box4status || "n/a").background,
+        textColor: currentmedstatus(scheduleStore.box4status || "n/a").textColor,
       }
     ];
   });
@@ -119,7 +169,7 @@
     <div class="schedule-heading">
       <span class="schedule-title">Your Weekly's Schedule</span>
       <span class="medprogress-container">
-        <span class="medication-progress"> 2 remaining </span>
+        <span class="medication-progress"> {{ remainingMeds }} remaining </span>
       </span>
     </div>
 
