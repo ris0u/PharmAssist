@@ -1,8 +1,7 @@
 //handlelogin.js
 import { defineStore } from 'pinia'
 import { getDatabase, ref, get, update } from 'firebase/database'
-import { useMedicineStore } from './handlemedicine'
-export const handlelogin = defineStore('profile', {
+export const handlelogin = defineStore('login', {
   state: () => ({
     email: '',
     password: '',
