@@ -1,12 +1,7 @@
 <template>
   <div class="container">
-    <div class="medication-header">
       <h2>Medicine Scheduler</h2>
-      <span class="homepagebtn"> 
-        <router-link to="/dashboard/home" class="hometext">Go Back</router-link>
-      </span>
-    </div>
-
+      
     <div class="scheduler">
       <!-- LEFT: Form -->
       <div class="form-card">
@@ -147,26 +142,7 @@ h2 {
   color: #333;
 }
 
-.medication-header{
-  display: flex;
-  justify-content: space-between;
-}
 
-.homepagebtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 7rem;
-  background: #f3e9ff;
-  color: #1e40af;
-  border-radius: 16px;
-  height: 3rem
-}
-
-.hometext {
-  text-decoration: none;
-  background-color: transparent;
-}
 
 .scheduler {
   display: flex;

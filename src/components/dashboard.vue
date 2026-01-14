@@ -15,14 +15,10 @@
               <router-link to="/dashboard/home">Dashboard</router-link>
             </li>
             <li>
-              <router-link to="/dashboard/editprofile"
-                >Edit profile</router-link
-              >
+              <router-link to="/dashboard/editprofile">Profile</router-link>
             </li>
             <li>
-              <router-link to="/dashboard/editmedication"
-                >Edit medication</router-link
-              >
+              <router-link to="/dashboard/editmedication">Edit schedule</router-link>
             </li>
           </span>
           <span class="logoutbtn">
@@ -151,7 +147,7 @@
 .logoutbtn li,
 .navlink li {
   background-color: transparent;
-  height: 5rem;
+  height: 4.5rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -178,7 +174,7 @@
   border: 3px solid transparent;
   border-radius: 12px;
   border: 3px solid;
-  border-color: #f59e0b;
+  border-color: #af7108;
   box-shadow: -1px 2px 6px rgb(219, 219, 219);
 }
 
