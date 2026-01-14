@@ -233,9 +233,7 @@ const greetings = ref([
 
 
 /* overview */
-.overview-container {
-  margin-top: 1rem;
-}
+
 .overview-content {
   display: flex;
   align-items: center;
@@ -384,6 +382,7 @@ const greetings = ref([
   gap: 1rem;
   margin-top: 1.5rem;
   background-color: transparent;
+  padding-bottom: 0.5rem;
 }
 .time-box {
   display: flex;
