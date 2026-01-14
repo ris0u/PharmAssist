@@ -13,6 +13,7 @@ import Homepage from './components/home.vue'
 import EditMedication from './components/editmedication.vue'
 import Editprofile from './components/editProfile.vue'
 import Dashboard from './components/dashboard.vue'
+import MedHistory from "./components/medhistory.vue";
 
 // Routes
 const routes = [
@@ -26,7 +27,8 @@ const routes = [
         children: [
             { path: 'home', name: 'Home', component: Homepage },
             { path: 'editmedication', name: 'EditMedication', component: EditMedication },
-            { path: 'editprofile', name: 'EditProfile', component: Editprofile }
+            { path: 'editprofile', name: 'EditProfile', component: Editprofile },
+            { path: 'medhistory', name: 'MedHistory', component: MedHistory }
         ]
     }
 ]

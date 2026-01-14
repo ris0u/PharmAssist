@@ -18,6 +18,9 @@
               <router-link to="/dashboard/editmedication">Schedule Medicine</router-link>
             </li>
             <li>
+              <router-link to="/dashboard/medhistory">Medication History</router-link>
+            </li>
+            <li>
               <router-link to="/dashboard/editprofile">Account</router-link>
             </li>
           </span>
