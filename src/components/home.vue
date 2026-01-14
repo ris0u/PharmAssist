@@ -162,7 +162,7 @@ const greetings = ref([
 
   <div class="schedule-container">
     <div class="schedule-heading">
-      <span class="schedule-title">Your Weekly's Schedule</span>
+      <span class="schedule-title">Your Daily Schedule</span>
       <span class="medprogress-container">
         <span class="medication-progress"> {{ remainingMeds }} remaining </span>
       </span>

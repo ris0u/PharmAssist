@@ -1,8 +1,10 @@
 <template>
   <div class="editprofile-container">
+    <h3>Manage Account Settings</h3>
+    <p class="description">Adjust and update your profile swiftly and quickly</p>
     <div class="main-content">
       <div class="formcontent">
-        <h2>Update User Profile</h2>
+        <h2>Edit Profile</h2>
         <form @submit.prevent="submitForm">
           <!-- USER INFO -->
           <span class="name-field inputfield">
@@ -29,14 +31,14 @@
               placeholder="Password"
             />
           </span>
-          <button type="submit">Update details</button>
+          <button type="submit">Update Details</button>
         </form>
       </div>
 
       <div class="updated-details">
         <div class="userdetails">
           <div class="userdetails-header">
-            <h3>Current User Details</h3>
+            <h2>Profile Overview</h2>
           </div>
           <p class="userdetails-title">
             <strong>Name:</strong> {{ profile.user.name }}
@@ -95,38 +97,44 @@ const submitForm = async () => {
 </script>
 
 <style scoped>
-.editprofile-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+.editprofile-container h3 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #44403c;
 }
 
-h2 {
-  font-size: x-large;
-  font-weight: 600;
-  color: #444430;
-  background-color: transparent;
+.description{
+    font-weight: 600;
+    color: #78716C;
 }
 
 .main-content {
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-columns: 1fr 1fr 1fr;
   height: fit-content;
-  gap: 1rem;
+  gap: 1.5rem;
   background-color: #fafaf9;
 }
 
 .formcontent {
   background-color: #fff;
   display: flex;
-  align-items: center;
+  align-items: ;
   justify-content: center;
   flex-direction: column;
-  border-radius: 24px;
+  border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   gap: 1rem;
-  padding-top: 4rem;
+  padding-top: 2rem;
   padding-bottom: 4rem;
+}
+
+.formcontent h2 {
+  background-color: transparent;
+  font-weight: 600;
+  color: #44403c;
+  font-size: 1.8rem;
 }
 
 .formcontent form {
@@ -134,12 +142,11 @@ h2 {
   flex-direction: column;
   gap: 1rem;
   background-color: transparent;
-  padding: 1rem;
 }
 
 .formcontent input,
 .formcontent button {
-  width: 20vw;
+  width: 100%;
   padding: 1.5rem;
   background-color: transparent;
   border-radius: 12px;
@@ -151,7 +158,7 @@ h2 {
   background-color: #effff7;
   color: #059669;
   font-weight: 600;
-  border: 3px solid #43a888;
+  border: 2px solid #43a888;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -175,10 +182,8 @@ h2 {
   background-color: #fff;
   color: #44403c;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 24px;
+  border-radius: 12px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 2rem;
 }
 
@@ -189,26 +194,26 @@ h2 {
 }
 
 .userdetails p,
-.userdetails h3 {
+.userdetails h2 {
   background-color: transparent;
 }
 
-.userdetails h3 {
+.userdetails h2 {
   font-weight: 600;
 }
 
 .userdetails p {
-  margin-top: 1.2rem;
+  margin-top: 2rem;
+  font-size: 1.2rem;
 }
 
 .userdetails-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
   background-color: transparent;
 }
 
-.userdetails-title p {
-  background-color: #fff;
+.userdetails-title p{
+    color: #44403c;
+    background-color: transparent;
 }
 </style>

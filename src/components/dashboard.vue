@@ -15,10 +15,10 @@
               <router-link to="/dashboard/home">Dashboard</router-link>
             </li>
             <li>
-              <router-link to="/dashboard/editprofile">Profile</router-link>
+              <router-link to="/dashboard/editmedication">Schedule Medicine</router-link>
             </li>
             <li>
-              <router-link to="/dashboard/editmedication">Edit schedule</router-link>
+              <router-link to="/dashboard/editprofile">Account</router-link>
             </li>
           </span>
           <span class="logoutbtn">
@@ -173,14 +173,14 @@
   color: #95510d;
   border: 3px solid transparent;
   border-radius: 12px;
-  border: 3px solid;
+  border: 2px solid;
   border-color: #af7108;
   box-shadow: -1px 2px 6px rgb(219, 219, 219);
 }
 
 .logoutbtn li a {
   color: #1e40af;
-  border: 3px solid;
+  border: 2px solid;
   border-color: #1e40af;
   width: 100%;
   text-decoration: none;
@@ -198,8 +198,8 @@
 }
 
 ::-webkit-scrollbar {
-  width: 12px;              
-  height: 12px;           
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
@@ -215,5 +215,4 @@
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #ee0979, #ff6a00);
 }
-
 </style>
