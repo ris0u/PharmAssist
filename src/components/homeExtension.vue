@@ -100,7 +100,6 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
 import { useHandleTemphum } from '../JS/handletemphum';
 import completed_icon from '../assets/completed.svg';
 import missed_icon from '../assets/missed.svg';
@@ -108,10 +107,9 @@ import upcoming_icon from '../assets/upcoming.svg';
 
 const temphumStore = useHandleTemphum();
 
-onMounted(() => {
-  temphumStore.connectMQTT()
-})
-
+setInterval(() => {
+  temphumStore.generateRandomData();
+}, 3000);
 </script>
 
 <style scoped>
@@ -121,8 +119,7 @@ onMounted(() => {
 
 body {
   font-family: "Inter", sans-serif;
-  padding-left: 10%;
-  padding-right: 10%;
+
   background-color: #fafaf9;
   margin: 0;
 }

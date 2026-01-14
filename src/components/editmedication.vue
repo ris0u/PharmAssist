@@ -1,11 +1,9 @@
 <template>
-  <navBar />
-  
   <div class="container">
     <div class="medication-header">
       <h2>Medicine Scheduler</h2>
       <span class="homepagebtn"> 
-        <router-link to="/Home" class="hometext">Go Back</router-link>
+        <router-link to="/dashboard/home" class="hometext">Go Back</router-link>
       </span>
     </div>
 
@@ -99,7 +97,6 @@
 import { ref, onMounted } from "vue"
 import { useMedicineStore } from "../JS/handlemedicine"
 
-import navBar from './navbar.vue';
 import { RouterLink } from "vue-router";
 const store = useMedicineStore()
 

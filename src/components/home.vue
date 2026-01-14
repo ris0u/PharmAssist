@@ -1,40 +1,62 @@
 <script setup>
-  import { ref, onMounted } from "vue";
-  import { useHandleSchedule } from '../JS/handleschedule';
-  import pendingIcon from '../assets/pending-icon.svg';
-  import successIcon from '../assets/check-icon.svg';
-  import missedIcon from '../assets/missed-icon.svg';
-  import takenpillIcon from '../assets/graypill-icon.svg';
-  import missedpillIcon from '../assets/missedpill-icon.svg';
-  import pendingpillIcon from '../assets/coloredpill-icon.svg';
-  import compartmentIcon from '../assets/compartment-icon.svg';
-  import timeIcon from '../assets/time-icon.svg';
-  import navBar from './navbar.vue';
-  import NewHome from './homeExtension.vue';
-  
-  const scheduleStore = useHandleSchedule()
-  
-  // Color references
-  const missedBackground = ref('#FFE6E6');
-  const successBackground = ref("#ECFDF5");
-  const pendingBackground = ref("#F3E9FF");
-  const missedText = ref("#BE3939");
-  const successText = ref("#059669");
-  const pendingText = ref("#1E40AF");
-  
-  // Time, boxes, and messages
-  const timeTake = ref([
-    "before breakfast","with breakfast","after breakfast",
-    "before lunch","with lunch","after lunch",
-    "before dinner","with dinner","after dinner",
-    "before bedtime", "every Day", "every Week", ""
-  ]);
-  const boxOrder = ref(["Compartment A","Compartment B","Compartment C","Compartment D"]);
-  const successMessage = ref(["Missed","Great Job!","Coming up next!", "Coming Soon!"]);
-  const greetings = ref(["Good morning","Good afternoon","Good evening"]);
-  
-  let remainingMeds = ref(0);
-  
+import { ref, onMounted } from "vue";
+import { useMedicineStore } from "../JS/handlemedicine";
+import { useHandleSchedule } from "../JS/handleschedule";
+import pendingIcon from '../assets/pending-icon.svg';
+import successIcon from '../assets/check-icon.svg';
+import missedIcon from '../assets/missed-icon.svg';
+import takenpillIcon from '../assets/graypill-icon.svg';
+import missedpillIcon from '../assets/missedpill-icon.svg';
+import pendingpillIcon from '../assets/coloredpill-icon.svg';
+import compartmentIcon from '../assets/compartment-icon.svg';
+import timeIcon from '../assets/time-icon.svg';
+import NewHome from './homeExtension.vue';
+
+const scheduleStore = useHandleSchedule()
+let remainingMeds = ref(0);
+
+
+// Medicine Card Color Data
+const missedBackground = ref('#FFE6E6');
+const successBackground = ref("#ECFDF5");
+const pendingBackground = ref("#F3E9FF");
+const missedText = ref("#BE3939");
+const successText = ref("#059669");
+const pendingText = ref("#1E40AF");
+
+// Medicine Data Arrays
+const timeTake = ref([
+  "before breakfast",
+  "with breakfast",
+  "after breakfast",
+  "before lunch",
+  "with lunch",
+  "after lunch",
+  "before dinner",
+  "with dinner",
+  "after dinner",
+  "before bedtime",
+]);
+
+const boxOrder = ref([
+  "Compartment A",
+  "Compartment B",
+  "Compartment C",
+  "Compartment D",
+]);
+
+const successMessage = ref([
+  "Missed",
+  "Great Job!",
+  "Coming up next!",
+]);
+
+const greetings = ref([
+  "Good morning",
+  "Good afternoon",
+  "Good evening",
+]);
+
   // Reactive medData array
   const medData = ref([]);
   
@@ -122,13 +144,9 @@
       buildMedData()
     }, 5000)
   })
-  </script>
-  
-  
+</script>
 
 <template>
-  <navBar />
-
   <div class="overview-container">
     <div class="overview-content">
       <div class="overview-icon">
@@ -203,7 +221,6 @@
     </div>
   </div>
 <NewHome />
-  
 </template>
 
 <style scoped>
@@ -217,8 +234,6 @@
 
 /* overview */
 .overview-container {
-  margin-left: 10%;
-  margin-right: 10%;
   margin-top: 1rem;
 }
 .overview-content {
@@ -256,8 +271,7 @@
 
 /* schedule */
 .schedule-container {
-  margin-left: 10%;
-  margin-right: 10%;
+
   margin-top: 2.5rem;
 }
 .schedule-heading {
