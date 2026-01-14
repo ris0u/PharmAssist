@@ -5,26 +5,26 @@
       <h4 class="title">PharmAssist Serial Monitor</h4>
       <div class="feature-temphum">
         <div class="feature-title">
-          <img src="../assets/img/icon-time.svg" alt="temphum-icon" class="icon" />
+          <img src="../assets/icon-time.svg" alt="temphum-icon" class="icon" />
           <h5 style="">Everything's working great</h5>
         </div>
         <div class="temphum-holder">
           <div class="temphum-content">
-            <img src="../assets/img/temp.svg" alt="temp-icon" class="temp-icon" />
+            <img src="../assets/temp.svg" alt="temp-icon" class="temp-icon" />
             <div style="display: column">
               <p>Temperature</p>
               <h5>{{ temphumStore.temperature }} - {{ temphumStore.tempStatus }}</h5>
             </div>
           </div>
           <div class="temphum-content">
-            <img src="../assets/img/humidity.svg" alt="temp-icon" class="temp-icon" />
+            <img src="../assets/humidity.svg" alt="temp-icon" class="temp-icon" />
             <div style="display: column">
               <p>Humidity</p>
               <h5>{{ temphumStore.humidity }} - {{ temphumStore.humStatus }}</h5>
             </div>
           </div>
           <div class="temphum-content">
-            <img src="../assets/img/compartmentbox.svg" alt="temp-icon" class="temp-icon" />
+            <img src="../assets/compartmentbox.svg" alt="temp-icon" class="temp-icon" />
             <div style="display: column">
               <p>Scheduled medication in</p>
               <h5>54 min</h5>
@@ -43,7 +43,7 @@
             <img :src="completed_icon" alt="temp-icon" class="temp-icon" />
           </div>
           <div class="weekly-content">
-            <p>Teu</p>
+            <p>Tue</p>
             <img :src="completed_icon" alt="temp-icon" class="temp-icon" />
           </div>
           <div class="weekly-content">
@@ -69,20 +69,20 @@
         </div>
         <div class="weekly-holder">
           <div class="weekly-legend">
-            <img src="../assets/img/checkicon.svg" alt="temp-icon" class="legend-icon" />
+            <img src="../assets/checkicon.svg" alt="temp-icon" class="legend-icon" />
             <p>Taken</p>
           </div>
           <div class="weekly-legend">
-            <img src="../assets/img/upcoming-yellow.svg" alt="temp-icon" class="legend-icon" />
+            <img src="../assets/upcoming-yellow.svg" alt="temp-icon" class="legend-icon" />
             <p>Upcoming</p>
           </div>
           <div class="weekly-legend">
-            <img src="../assets/img/missed-1.svg" alt="temp-icon" class="legend-icon" />
+            <img src="../assets/missed-1.svg" alt="temp-icon" class="legend-icon" />
             <p>Missed</p>
           </div>
         </div>
         <div class="weekly-expand">
-        <img src="../assets/img/expand.svg" alt="weekly-graph"/>
+        <img src="../assets/expand.svg" alt="weekly-graph"/>
         </div>
       </div>
       <div class="feature-messeges">
@@ -92,7 +92,7 @@
             Metformin!"</p>
         </div>
         <div class="messeges-button">
-          <button><img src="../assets/img/arrow.svg" class="messeges-img">Send a message</button>
+          <button><img src="../assets/arrow.svg" class="messeges-img">Send a message</button>
         </div>
       </div>
     </div>
@@ -100,22 +100,24 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 import { useHandleTemphum } from '../JS/handletemphum';
-
-import completed_icon from '../assets/img/completed.svg';
-import missed_icon from '../assets/img/missed.svg';
-import upcoming_icon from '../assets/img/upcoming.svg';
+import completed_icon from '../assets/completed.svg';
+import missed_icon from '../assets/missed.svg';
+import upcoming_icon from '../assets/upcoming.svg';
 
 const temphumStore = useHandleTemphum();
 
-setInterval(() => {
-  temphumStore.generateRandomData();
-}, 3000);
+onMounted(() => {
+  temphumStore.connectMQTT()
+})
 
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  font-family: 'inter', sans-serif;
+}
 
 body {
   font-family: "Inter", sans-serif;
@@ -203,6 +205,7 @@ body {
 .temp-icon {
   width: 55px;
   height: 55px;
+  background-color: transparent;
 }
 
 .weekly-holder {
@@ -247,7 +250,9 @@ body {
   position: absolute;
   right: 0;
   bottom: 0;
+  background-color: transparent;
 }
+
 
 
 .weekly-legend {
@@ -347,5 +352,6 @@ body {
 .messeges-img {
   width: 18px;
   height: 17px;
+  background-color: transparent;
 }
 </style>
