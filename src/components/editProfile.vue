@@ -1,9 +1,8 @@
 <template>
-    <navBar />
     <div class="editprofile-container">
         <div class="editprofile-content">
             <div class="editprofile-header">
-                <router-link to="home" class="hometext"> Go Back </router-link>
+                <router-link to="/dashboard/home" class="hometext"> Go Back </router-link>
             </div>
 
             <div class="main-content">
@@ -45,7 +44,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import navBar from './navbar.vue'
 import { handleregister } from '../JS/handleregister.js'
 import { handlelogin } from '../JS/handlelogin.js'
 import { getDatabase, ref as dbRef, get } from 'firebase/database'

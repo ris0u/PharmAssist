@@ -119,8 +119,7 @@ setInterval(() => {
 
 body {
   font-family: "Inter", sans-serif;
-  padding-left: 10%;
-  padding-right: 10%;
+
   background-color: #fafaf9;
   margin: 0;
 }

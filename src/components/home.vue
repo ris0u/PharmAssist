@@ -10,9 +10,6 @@ import pendingpillIcon from '../assets/coloredpill-icon.svg';
 import compartmentIcon from '../assets/compartment-icon.svg';
 import timeIcon from '../assets/time-icon.svg';
 import NewHome from './homeExtension.vue';
-import navBar from './navbar.vue';
-
-// Popup Modal form
 
 // Medicine Card Color Data
 const missedBackground = ref('#FFE6E6');
@@ -113,8 +110,6 @@ const medData = ref([
 </script>
 
 <template>
-  <navBar />
-
   <div class="overview-container">
     <div class="overview-content">
       <div class="overview-icon">
@@ -189,7 +184,6 @@ const medData = ref([
     </div>
   </div>
 <NewHome />
-  
 </template>
 
 <style scoped>
@@ -203,8 +197,6 @@ const medData = ref([
 
 /* overview */
 .overview-container {
-  margin-left: 10%;
-  margin-right: 10%;
   margin-top: 1rem;
 }
 .overview-content {
@@ -242,8 +234,7 @@ const medData = ref([
 
 /* schedule */
 .schedule-container {
-  margin-left: 10%;
-  margin-right: 10%;
+
   margin-top: 2.5rem;
 }
 .schedule-heading {
