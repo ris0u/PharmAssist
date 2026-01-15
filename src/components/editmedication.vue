@@ -137,16 +137,13 @@ onMounted(() => {
 </script>
 
 <style scoped>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+
 
 .container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  flex-shrink: 1;
 }
 
 .form-header h2 {
@@ -165,7 +162,7 @@ onMounted(() => {
   display: grid;
   grid-template-columns: 1.5fr 3fr;
   grid-template-rows: auto 1fr;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 /* FORM CARD */
