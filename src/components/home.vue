@@ -84,7 +84,7 @@ const greetings = ref([
         supply: (scheduleStore.box1dose || 0) + " tablets",
         timeDesc: schedtype(scheduleStore.box1schedtype || "n/a"),
         scheduledTime: scheduleStore.box1shed || "N/A",
-        dose: "1 tablet left",
+        dose: "30mg",
         compartment: boxOrder.value[0],
         status: currentmedstatus(scheduleStore.box1status || "n/a").status,
         statusIcon: currentmedstatus(scheduleStore.box1status || "n/a").statusIcon,
