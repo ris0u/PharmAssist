@@ -103,7 +103,6 @@
 import { ref, onMounted } from "vue";
 import { useMedicineStore } from "../JS/handlemedicine";
 
-import { RouterLink } from "vue-router";
 const store = useMedicineStore();
 
 const intakeType = ref("");
@@ -137,13 +136,16 @@ onMounted(() => {
 </script>
 
 <style scoped>
-
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
 .container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  flex-shrink: 1;
 }
 
 .form-header h2 {
@@ -160,9 +162,11 @@ onMounted(() => {
 
 .scheduler {
   display: grid;
-  grid-template-columns: 1.5fr 3fr;
-  grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(280px, 420px) 1fr;
   gap: 1rem;
+  align-items: start;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* FORM CARD */
@@ -288,9 +292,17 @@ onMounted(() => {
 }
 
 /* RESPONSIVE */
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .scheduler {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 1rem;
+  }
+
+  .form-card,
+  .display-card {
+    width: 100%;
+    min-width: 0;
   }
 }
 </style>
