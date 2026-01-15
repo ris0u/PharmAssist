@@ -71,7 +71,7 @@ const confirm = ref("");
 onMounted(async () => {
   if (!login.safeEmail) {
     alert("Please login first");
-    router.push("/login");
+    await router.push("/login");
     return;
   }
   const db = getDatabase();
