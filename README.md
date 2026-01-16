@@ -203,7 +203,12 @@ For issues, questions, or suggestions, please open an issue on the GitHub reposi
 
 ## 👥 Authors
 
-- **PharmAssist Team** - Initial development
+- **Mark Allen Siddayao** - Lead/Backend Dev/QA
+- **Lamuel Joseph Bapilar** - Backend Dev/Frontend Dev
+- **Kian Manalastas** - UIUX Designer/Frontend Dev
+- **Alfred Joaquin Orencia** - Deployment/Network/QA
+- **Mary Joyce Sumagang** - Documentation
+- **Czaree Ligero** - Documentation
 
 ## 🙏 Acknowledgments
 
