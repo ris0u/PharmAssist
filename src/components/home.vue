@@ -36,6 +36,8 @@ const timeTake = ref([
   "with dinner",
   "after dinner",
   "before bedtime",
+  "every Day",
+  "every Week",
 ]);
 
 const boxOrder = ref([
@@ -142,7 +144,7 @@ const greetings = ref([
       scheduleStore.medremain = 0
       await scheduleStore.fetchBoxes()
       buildMedData()
-    }, 5000)
+    }, 1000)
   })
 </script>
 
@@ -162,7 +164,7 @@ const greetings = ref([
 
   <div class="schedule-container">
     <div class="schedule-heading">
-      <span class="schedule-title">Your Weekly's Schedule</span>
+      <span class="schedule-title">Your Daily Schedule</span>
       <span class="medprogress-container">
         <span class="medication-progress"> {{ remainingMeds }} remaining </span>
       </span>
@@ -233,9 +235,7 @@ const greetings = ref([
 
 
 /* overview */
-.overview-container {
-  margin-top: 1rem;
-}
+
 .overview-content {
   display: flex;
   align-items: center;
@@ -271,8 +271,7 @@ const greetings = ref([
 
 /* schedule */
 .schedule-container {
-
-  margin-top: 2.5rem;
+  margin-top: 2rem;
 }
 .schedule-heading {
   display: flex;
@@ -385,6 +384,7 @@ const greetings = ref([
   gap: 1rem;
   margin-top: 1.5rem;
   background-color: transparent;
+  padding-bottom: 0.5rem;
 }
 .time-box {
   display: flex;
@@ -421,9 +421,4 @@ const greetings = ref([
   width: 28px;
   background-color: transparent;
 }
-
-/* Popup Modal styles */
-
 </style>
-
-

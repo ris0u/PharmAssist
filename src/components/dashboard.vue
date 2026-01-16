@@ -15,14 +15,13 @@
               <router-link to="/dashboard/home">Dashboard</router-link>
             </li>
             <li>
-              <router-link to="/dashboard/editprofile"
-                >Edit profile</router-link
-              >
+              <router-link to="/dashboard/editmedication">Schedule Medicine</router-link>
             </li>
             <li>
-              <router-link to="/dashboard/editmedication"
-                >Edit medication</router-link
-              >
+              <router-link to="/dashboard/medhistory">Medication History</router-link>
+            </li>
+            <li>
+              <router-link to="/dashboard/editprofile">Account</router-link>
             </li>
           </span>
           <span class="logoutbtn">
@@ -61,6 +60,7 @@
   flex-grow: 1;
   padding: 30px;
   overflow-y: auto;
+  padding-top: 3rem;
 }
 
 /* Header */
@@ -72,7 +72,7 @@
   flex-direction: column;
   height: 100vh;
   width: 17%;
-  gap: 5rem;
+  gap: 3rem;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -150,7 +150,7 @@
 .logoutbtn li,
 .navlink li {
   background-color: transparent;
-  height: 5rem;
+  height: 4.5rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -176,14 +176,14 @@
   color: #95510d;
   border: 3px solid transparent;
   border-radius: 12px;
-  border: 3px solid;
-  border-color: #f59e0b;
+  border: 2px solid;
+  border-color: #af7108;
   box-shadow: -1px 2px 6px rgb(219, 219, 219);
 }
 
 .logoutbtn li a {
   color: #1e40af;
-  border: 3px solid;
+  border: 2px solid;
   border-color: #1e40af;
   width: 100%;
   text-decoration: none;
@@ -201,8 +201,8 @@
 }
 
 ::-webkit-scrollbar {
-  width: 12px;              
-  height: 12px;           
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
@@ -218,5 +218,4 @@
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #ee0979, #ff6a00);
 }
-
 </style>
