@@ -203,12 +203,12 @@ For issues, questions, or suggestions, please open an issue on the GitHub reposi
 
 ## 👥 Authors
 
-- **Mark Allen Siddayao** - Lead/Backend Dev/QA
-- **Lamuel Joseph Bapilar** - Backend Dev/Frontend Dev
-- **Kian Manalastas** - UIUX Designer/Frontend Dev
-- **Alfred Joaquin Orencia** - Deployment/Network/QA
-- **Mary Joyce Sumagang** - Documentation
-- **Czaree Ligero** - Documentation
+- **Mark Allen Siddayao** - Lead/Backend Dev/QA/Hardware
+- **Lamuel Joseph Bapilar** - Backend Dev/Frontend Dev/APIs
+- **Kian Manalastas** - UIUX Designer/Frontend Dev/Workflows
+- **Alfred Joaquin Orencia** - Deployment/Devops/QA
+- **Mary Joyce Sumagang** - Documentation/QA
+- **Czaree Ligero** - Documentation/QA
 
 ## 🙏 Acknowledgments
 
