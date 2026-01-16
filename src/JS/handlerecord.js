@@ -1,6 +1,6 @@
-import { defineStore } from "pinia";
-import { db } from "./firebase";
-import { ref, set, onValue } from "firebase/database";
+import { defineStore } from "pinia"
+import { db } from "./firebase"
+import { ref, set, onValue } from "firebase/database"
 
 export const useMedicineStore = defineStore("record", {
   state: () => ({

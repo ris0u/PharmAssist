@@ -39,31 +39,31 @@
         </div>
         <div style="display: flex; gap: 5%; padding-left: 20px; background-color: #ffffff;">
           <div class="weekly-content">
-            <p>{{date1}}</p>
+            <p>{{ date1 }}</p>
             <img :src="statusIcon(status1)" alt="temp-icon" class="temp-icon" />
           </div>
           <div class="weekly-content">
-            <p>{{date2}}</p>
+            <p>{{ date2 }}</p>
             <img :src="statusIcon(status2)" alt="temp-icon" class="temp-icon" />
           </div>
           <div class="weekly-content">
-            <p>{{date3}}</p>
+            <p>{{ date3 }}</p>
             <img :src="statusIcon(status3)" alt="temp-icon" class="temp-icon" />
           </div>
           <div class="weekly-content">
-            <p>{{date4}}</p>
+            <p>{{ date4 }}</p>
             <img :src="statusIcon(status4)" alt="temp-icon" class="temp-icon" />
           </div>
           <div class="weekly-content">
-            <p>{{date5}}</p>
+            <p>{{ date5 }}</p>
             <img :src="statusIcon(status5)" alt="temp-icon" class="temp-icon" />
           </div>
           <div class="weekly-content">
-            <p>{{date6}}</p>
+            <p>{{ date6 }}</p>
             <img :src="statusIcon(status6)" alt="temp-icon" class="temp-icon" />
           </div>
           <div class="weekly-content">
-            <p>{{date7}}</p>
+            <p>{{ date7 }}</p>
             <img :src="statusIcon(status7)" alt="temp-icon" class="temp-icon" />
           </div>
         </div>
@@ -82,96 +82,101 @@
           </div>
         </div>
         <div class="weekly-expand">
-        <img src="../assets/expand.svg" alt="weekly-graph"/>
+          <img src="../assets/expand.svg" alt="weekly-graph" />
         </div>
       </div>
-      <form action="https://api.web3forms.com/submit" method="POST">
-      <div class="feature-messeges">
-        <div class="messeges-content">
-          
-          <h5>Note for the Developers</h5>
-          
-            <input type="hidden" name="name" required value="Feedback"/>
-            <input type="hidden" name="email" required value="lamuelbapilar@gmail.com"/>
-          <input name="message" placeholder="Share your thoughts..." />
-       
+      <form action="https://api.web3forms.com/submit" method="POST" id="form">
+        <input type="hidden" name="access_key" value="c0c02cbb-ab44-4de4-836d-fb5efaaf857a">
+
+        <div class="feature-messeges">
+          <div class="messeges-content">
+            <h5>Note for the Developers</h5>
+
+            <input type="hidden" name="name" value="Feedback" />
+            <input type="hidden" name="email" value="lamuelbapilar@gmail.com" />
+
+            <input name="message" placeholder="Share your thoughts..." required />
+          </div>
+
+          <div class="messeges-button">
+            <button type="submit">
+              <img src="../assets/arrow.svg" class="messeges-img">
+              Send a message
+            </button>
+          </div>
         </div>
-        <div class="messeges-button">
-          <button><img src="../assets/arrow.svg" class="messeges-img" typeof="submit">Send a message</button>
-        </div>
-      </div>   
-    </form>  
+      </form>
     </div>
-    
+
   </body>
 </template>
 
 <script setup>
-  import { ref, onMounted, onUnmounted } from 'vue'
-  import { useHandleTemphum } from '../JS/handletemphum'
-  import { useHandleSchedule } from '../JS/handleschedule'
-  import completed_icon from '../assets/completed.svg'
-  import missed_icon from '../assets/missed.svg'
-  import upcoming_icon from '../assets/upcoming.svg'
-  
-  const temphumStore = useHandleTemphum()
-  const scheduleStore = useHandleSchedule()
-  
-  // --- reactive variables for upcoming schedule ---
-  const sched = ref("")
-  
-  // --- reactive variables for each of the last 7 days ---
-  const date1 = ref(""); const status1 = ref("")
-  const date2 = ref(""); const status2 = ref("")
-  const date3 = ref(""); const status3 = ref("")
-  const date4 = ref(""); const status4 = ref("")
-  const date5 = ref(""); const status5 = ref("")
-  const date6 = ref(""); const status6 = ref("")
-  const date7 = ref(""); const status7 = ref("")
-  
-  let intervalId = null
-  
-  // assign last 7 days data to reactive variables
-  function assignLast7DaysData(data) {
-    if (!data || data.length < 7) return
-    date1.value = data[0].date; status1.value = data[0].status
-    date2.value = data[1].date; status2.value = data[1].status
-    date3.value = data[2].date; status3.value = data[2].status
-    date4.value = data[3].date; status4.value = data[3].status
-    date5.value = data[4].date; status5.value = data[4].status
-    date6.value = data[5].date; status6.value = data[5].status
-    date7.value = data[6].date; status7.value = data[6].status
-  }
+import { ref, onMounted, onUnmounted } from 'vue'
+import { useHandleTemphum } from '../JS/handletemphum'
+import { useHandleSchedule } from '../JS/handleschedule'
+import completed_icon from '../assets/completed.svg'
+import missed_icon from '../assets/missed.svg'
+import upcoming_icon from '../assets/upcoming.svg'
 
-  function statusIcon(status) {
-    if (status === "completed") return completed_icon
-    else if (status === "missed") return missed_icon
-    else return upcoming_icon
-  }
+const temphumStore = useHandleTemphum()
+const scheduleStore = useHandleSchedule()
+
+// --- reactive variables for upcoming schedule ---
+const sched = ref("")
+
+// --- reactive variables for each of the last 7 days ---
+const date1 = ref(""); const status1 = ref("")
+const date2 = ref(""); const status2 = ref("")
+const date3 = ref(""); const status3 = ref("")
+const date4 = ref(""); const status4 = ref("")
+const date5 = ref(""); const status5 = ref("")
+const date6 = ref(""); const status6 = ref("")
+const date7 = ref(""); const status7 = ref("")
+
+let intervalId = null
+
+// assign last 7 days data to reactive variables
+function assignLast7DaysData(data) {
+  if (!data || data.length < 7) return
+  date1.value = data[0].date; status1.value = data[0].status
+  date2.value = data[1].date; status2.value = data[1].status
+  date3.value = data[2].date; status3.value = data[2].status
+  date4.value = data[3].date; status4.value = data[3].status
+  date5.value = data[4].date; status5.value = data[4].status
+  date6.value = data[5].date; status6.value = data[5].status
+  date7.value = data[6].date; status7.value = data[6].status
+}
+
+function statusIcon(status) {
+  if (status === "completed") return completed_icon
+  else if (status === "missed") return missed_icon
+  else return upcoming_icon
+}
 
 
-  
-  onMounted(async () => {
-    temphumStore.connectMQTT()
-  
-    // fetch boxes and last 7 days immediately
-    await scheduleStore.fetchBoxes()
+
+onMounted(async () => {
+  temphumStore.connectMQTT()
+
+  // fetch boxes and last 7 days immediately
+  await scheduleStore.fetchBoxes()
+  sched.value = scheduleStore.upcomingshed
+  assignLast7DaysData(scheduleStore.last7days)
+
+  // update every 3 seconds
+  intervalId = setInterval(() => {
     sched.value = scheduleStore.upcomingshed
     assignLast7DaysData(scheduleStore.last7days)
-  
-    // update every 3 seconds
-    intervalId = setInterval(() => {
-      sched.value = scheduleStore.upcomingshed
-      assignLast7DaysData(scheduleStore.last7days)
-    }, 3000)
-  })
-  
-  onUnmounted(() => {
-    if (intervalId) clearInterval(intervalId)
-  })
-  </script>
-  
-  
+  }, 3000)
+})
+
+onUnmounted(() => {
+  if (intervalId) clearInterval(intervalId)
+})
+</script>
+
+
 
 <style scoped>
 * {
@@ -304,7 +309,7 @@ body {
   position: relative;
 }
 
-.weekly-expand img{
+.weekly-expand img {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -386,7 +391,7 @@ body {
   position: relative;
   background-color: transparent;
   min-width: 20%;
-  
+
 }
 
 .messeges-button button {

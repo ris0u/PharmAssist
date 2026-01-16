@@ -68,7 +68,7 @@
   display: flex;
   align-items: center;
   padding-top: 2.5rem;
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
   flex-direction: column;
   height: 100vh;
   width: 17%;

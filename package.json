@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vuepic/vue-datepicker": "^12.1.0",
     "bootstrap": "^5.3.8",
     "firebase": "^12.7.0",
     "mqtt": "^5.14.1",

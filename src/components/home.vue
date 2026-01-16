@@ -36,8 +36,8 @@ const timeTake = ref([
   "with dinner",
   "after dinner",
   "before bedtime",
-  "every Day",
-  "every Week",
+  "every day",
+  "every week",
 ]);
 
 const boxOrder = ref([
@@ -84,7 +84,7 @@ const greetings = ref([
         supply: (scheduleStore.box1dose || 0) + " tablets",
         timeDesc: schedtype(scheduleStore.box1schedtype || "n/a"),
         scheduledTime: scheduleStore.box1shed || "N/A",
-        dose: "500mg",
+        dose: "30mg",
         compartment: boxOrder.value[0],
         status: currentmedstatus(scheduleStore.box1status || "n/a").status,
         statusIcon: currentmedstatus(scheduleStore.box1status || "n/a").statusIcon,
@@ -144,7 +144,7 @@ const greetings = ref([
       scheduleStore.medremain = 0
       await scheduleStore.fetchBoxes()
       buildMedData()
-    }, 1000)
+    }, 5000)
   })
 </script>
 
